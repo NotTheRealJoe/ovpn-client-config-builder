@@ -1,0 +1,7 @@
+#!/bin/bash
+# Copy this file to config.sh and edit if the defaults are incorrect.
+
+# EasyRSA paths
+EASYRSA_BIN_PATH='/usr/share/easy-rsa/3.0.7'
+EASYRSA_INSTALLED_PATH='/etc/openvpn/server/easy-rsa'
+TLSCRYPT_PATH='/etc/openvpn/server/tlscrypt.key'
