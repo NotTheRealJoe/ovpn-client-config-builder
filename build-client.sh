@@ -76,12 +76,9 @@ cd "$SCRIPT_DIR" || exit 99
 	echo "tls-client"
 	echo "dev tun"
 	echo "remote $OPENVPN_REMOTE"
-	echo "remote-crt-tls server"
-	echo "remote-cert-eku \"TLS Web Client Authentication\""
 } >> "$1.ovpn"
 
 append-wrapped-from-file "ca" "$EASYRSA_INSTALLED_PATH/pki/ca.crt" "$1.ovpn"
 append-wrapped-from-file "cert" "$EASYRSA_INSTALLED_PATH/pki/issued/$1.crt" "$1.ovpn"
 append-wrapped-from-file "key" "$EASYRSA_INSTALLED_PATH/pki/private/$1.key" "$1.ovpn"
-append-wrapped-from-file "tls-auth" "$TLSCRYPT_PATH" "$1.ovpn"
-
+append-wrapped-from-file "tls-crypt" "$TLSCRYPT_PATH" "$1.ovpn"
