@@ -66,7 +66,7 @@ if ! cd "$EASYRSA_INSTALLED_PATH"; then
 fi
 
 # Run easyrsa to build a client
-"$EASYRSA" build-client-full "$1"
+"$EASYRSA" build-client-full "$1" nopass
 
 # Build the client config file
 cd "$SCRIPT_DIR" || exit 99
