@@ -4,4 +4,7 @@
 # EasyRSA paths
 EASYRSA_BIN_PATH='/usr/share/easy-rsa/3.0.7'
 EASYRSA_INSTALLED_PATH='/etc/openvpn/server/easy-rsa'
-TLSCRYPT_PATH='/etc/openvpn/server/tlscrypt.key'
+
+# Config paths for tlscryptv2
+TLSCRYPTV2_DIR='/etc/openvpn'
+TLSCRYPTV2_SERVER_KEY='/etc/openvpn/tlscryptv2.pem'

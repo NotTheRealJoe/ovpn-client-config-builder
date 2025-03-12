@@ -50,6 +50,12 @@ for BLOCKER in "${EASYRSA_BLOCKER_PATHS[@]}"; do
 	fi
 done
 
+# Check that openvpn binary is available
+if ! which openvpn > /dev/null; then
+    echo "openvpn not found. Ensure the openvpn binary is installed and available in PATH"
+    exit 5
+fi
+
 function append-wrapped-from-file {
 	printf "<%s>\n%s\n</%s>\n" "$1" "$(cat "$2")" "$1" >> "$3"
 }
@@ -68,6 +74,9 @@ fi
 # Run easyrsa to build a client
 "$EASYRSA" build-client-full "$1" nopass
 
+# Generate tlscryptv2 key
+openvpn --genkey tls-crypt-v2-client "$TLSCRYPTV2_DIR/tlscryptv2-client-$1.key" --tls-crypt-v2 "$TLSCRYPTV2_SERVER_KEY"
+
 # Build the client config file
 cd "$SCRIPT_DIR" || exit 99
 
@@ -81,4 +90,4 @@ cd "$SCRIPT_DIR" || exit 99
 append-wrapped-from-file "ca" "$EASYRSA_INSTALLED_PATH/pki/ca.crt" "$1.ovpn"
 append-wrapped-from-file "cert" "$EASYRSA_INSTALLED_PATH/pki/issued/$1.crt" "$1.ovpn"
 append-wrapped-from-file "key" "$EASYRSA_INSTALLED_PATH/pki/private/$1.key" "$1.ovpn"
-append-wrapped-from-file "tls-crypt" "$TLSCRYPT_PATH" "$1.ovpn"
+append-wrapped-from-file "tls-crypt-v2" "$TLSCRYPTV2_DIR/tlscryptv2-client-$1.key" "$1.ovpn"

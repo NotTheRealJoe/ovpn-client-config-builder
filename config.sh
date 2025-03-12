@@ -4,7 +4,10 @@
 # EasyRSA paths
 EASYRSA_BIN_PATH='/usr/share/easy-rsa'
 EASYRSA_INSTALLED_PATH='/etc/openvpn/easyrsa'
-TLSCRYPT_PATH='/etc/openvpn/tlscrypt.key'
+
+# Config paths for tlscryptv2
+TLSCRYPTV2_DIR='/etc/openvpn'
+TLSCRYPTV2_SERVER_KEY='/etc/openvpn/tlscryptv2.pem'
 
 # Remote configuration
 # Enter remote in the following format: <server> <port_number> <proto (tcp/udp)>
